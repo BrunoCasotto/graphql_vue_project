@@ -2,13 +2,13 @@ version: '3'
 services:
   db:
     image: mongo:3.4
-  backend:
+  server:
     image: node:8.1
     volumes:
-      - ./backend/:/backend
+      - ./server/:/server
     ports:
       - 3000:3000
-    command: bash -c "cd /backend && npm i"
+    command: bash -c "cd /server && npm i"
   client:
     image: nginx:1.13
     volumes:
