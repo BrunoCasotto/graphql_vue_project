@@ -1,11 +1,11 @@
 {
-  "name": "graphql_vue_project",
+  "name": "graphql_vue_server",
   "version": "1.0.0",
   "description": "",
-  "main": "server/index.js",
+  "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "author": "Bruno Casotto",
+  "author": "",
   "license": "ISC"
 }
