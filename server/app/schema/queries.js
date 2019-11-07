@@ -1,5 +1,5 @@
 const teams = `
-  teams (name: String):[Item]
+  teams (name: String):[Team]
 `
 
 const queries = `
