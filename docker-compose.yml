@@ -1,14 +1,33 @@
 version: '3'
 services:
-  db:
-    image: mongo:3.4
+  #apollo server - graphql#
   server:
-    image: node:8.1
+    image: node:8.11.3
     volumes:
       - ./server/:/server
     ports:
-      - 3000:3000
-    command: bash -c "cd /server && npm i"
+      - 4000:4000
+    command: bash -c "cd ./server && npm i && node index.js"
+
+  #team server mock api - rest
+  teamapi:
+    image: node:8.11.3
+    volumes:
+      - ./teamApi/:/teamApi
+    ports:
+      - 4040:4040
+    command: bash -c "cd ./teamApi && npm i && node index.js"
+
+    #players server mock api - rest
+  playerapi:
+    image: node:8.11.3
+    volumes:
+      - ./playersApi/:/playersApi
+    ports:
+      - 5050:5050
+    command: bash -c "cd ./playersApi && npm i && node index.js"
+
+  #client dashboard#
   client:
     image: nginx:1.13
     volumes:
