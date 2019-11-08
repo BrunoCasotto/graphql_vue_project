@@ -14,23 +14,31 @@ const getPlayersByTeamId = async (teamId) => {
   return axios.get(`${playersApiPath}?teamId=${teamId}`)
 }
 
-const teams = async (_, args) => {
-  const { name } = args
-  if(!name) {
-    const allTeams = await getAllTeams()
-    return allTeams.data
-  }
-
-  const { data } = await searchTeam(name)
-  const teamsMatched = data
-
-  const teamsAndPlayersList = teamsMatched.map(async team => {
+const insertPlayersIntoList = async (teamList) => {
+  const teamsAndPlayersList = teamList.map(async team => {
     const playersResult = await getPlayersByTeamId(team.teamId)
     return {
       ...team,
       players: playersResult.data
     }
   })
+
+  return teamsAndPlayersList
+}
+
+const teams = async (_, args) => {
+  const { name } = args
+  let teamList = []
+
+  if(!name) {
+    const allTeams = await getAllTeams()
+    teamList = allTeams.data
+  } else {
+    const matchedTeams = await searchTeam(name)
+    teamList = matchedTeams.data
+  }
+
+  const teamsAndPlayersList = await insertPlayersIntoList(teamList)
 
   return teamsAndPlayersList
 }
