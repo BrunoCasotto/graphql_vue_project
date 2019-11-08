@@ -1,17 +1,9 @@
 version: '3'
 services:
-  #apollo server - graphql#
-  server:
-    image: node:8.11.3
-    volumes:
-      - ./server/:/server
-    ports:
-      - 4000:4000
-    command: bash -c "cd ./server && npm i && node index.js"
-
   #team server mock api - rest
   teamapi:
     image: node:8.11.3
+    container_name: teamapi
     volumes:
       - ./teamApi/:/teamApi
     ports:
@@ -21,11 +13,21 @@ services:
     #players server mock api - rest
   playerapi:
     image: node:8.11.3
+    container_name: playerapi
     volumes:
       - ./playersApi/:/playersApi
     ports:
       - 5050:5050
     command: bash -c "cd ./playersApi && npm i && node index.js"
+
+  #apollo server - graphql#
+  server:
+    image: node:8.11.3
+    volumes:
+      - ./server/:/server
+    ports:
+      - 4000:4000
+    command: bash -c "cd ./server && npm i && node index.js"
 
   #client dashboard#
   client:

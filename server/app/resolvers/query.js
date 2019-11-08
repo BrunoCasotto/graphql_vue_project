@@ -1,6 +1,6 @@
 const axios = require('axios')
-const teamsApiPath = 'http://localhost:4040/teams'
-const playersApiPath = 'http://localhost:5050/players'
+const teamsApiPath = `http://teamapi:4040/teams`
+const playersApiPath = `http://playerapi:5050/players`
 
 const getAllTeams = async () => {
   return axios.get(teamsApiPath)

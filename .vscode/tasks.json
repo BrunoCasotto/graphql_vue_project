@@ -9,6 +9,6 @@
       "command": "docker-compose up",
       "group": "build",
       "problemMatcher": []
-    }
+    },
   ]
 }
