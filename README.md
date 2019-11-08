@@ -18,3 +18,5 @@ Um projeto simples utilizando um ambiente docker para simular micro serviços se
 * Docker
 * GraphQl
 * VueJs
+
+<p>Este projeto tem propósito de estudo</p>
