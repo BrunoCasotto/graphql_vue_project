@@ -6,7 +6,7 @@
     {
       "label": "initialize",
       "type": "shell",
-      "command": "docker-compose up",
+      "command": "cd frontend && npm i && npm run build && cd .. && docker-compose up",
       "group": "build",
       "problemMatcher": []
     },

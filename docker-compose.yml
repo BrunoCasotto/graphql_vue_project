@@ -33,6 +33,6 @@ services:
   client:
     image: nginx:1.13
     volumes:
-      - ./client/:/usr/share/nginx/html/
+      - ./frontend/dist/:/usr/share/nginx/html/
     ports:
       - 8080:80
