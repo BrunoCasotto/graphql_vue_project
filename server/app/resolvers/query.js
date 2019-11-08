@@ -1,35 +1,38 @@
-const teamsData = require('./../data/teams.json')
-const playersData = require('./../data/players.json')
+const axios = require('axios')
+const teamsApiPath = 'http://localhost:4040/teams'
+const playersApiPath = 'http://localhost:5050/players'
 
-const matchName = (nameWord, name) => {
-  const regex = new RegExp(nameWord.toLowerCase(),'g')
-  return name.toLowerCase().search(regex) != -1
+const getAllTeams = async () => {
+  return axios.get(teamsApiPath)
 }
 
-const getPlayersByTeam = (teamId) => {
-  const players = playersData.players.filter(
-    player => player.teamId === teamId
-  )
-
-  return players
+const searchTeam = async (term) => {
+  return axios.get(`${teamsApiPath}?search=${term}`)
 }
 
-const teams = (_, args) => {
+const getPlayersByTeamId = async (teamId) => {
+  return axios.get(`${playersApiPath}?teamId=${teamId}`)
+}
+
+const teams = async (_, args) => {
   const { name } = args
-  if(!name) return teamsData.teams
+  if(!name) {
+    const allTeams = await getAllTeams()
+    return allTeams.data
+  }
 
-  const teamsMatched = teamsData.teams.filter(
-    team => matchName(name, team.teamName)
-  )
+  const { data } = await searchTeam(name)
+  const teamsMatched = data
 
-  const result = teamsMatched.map(team => {
+  const teamsAndPlayersList = teamsMatched.map(async team => {
+    const playersResult = await getPlayersByTeamId(team.teamId)
     return {
       ...team,
-      players: getPlayersByTeam(team.teamId)
+      players: playersResult.data
     }
   })
 
-  return result
+  return teamsAndPlayersList
 }
 
 module.exports = {

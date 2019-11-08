@@ -10,7 +10,7 @@ const matchName = (nameWord, name) => {
 
 app.get('/teams', (req, res) =>{
   const { search } = req.query
-  if(!search) return res.json(teamData)
+  if(!search) return res.json(teamData.teams)
 
   const teamsMatched = teamData.teams.filter(
     team => matchName(search, team.teamName)
