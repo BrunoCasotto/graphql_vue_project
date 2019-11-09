@@ -10,5 +10,45 @@
       "group": "build",
       "problemMatcher": []
     },
+    {
+      "label": "run:development",
+      "type": "shell",
+      "command": "echo starting application",
+      "group": "build",
+      "dependsOn":[
+        "run:teamApi",
+        "run:frontend",
+        "run:playersApi",
+        "run:server"
+      ]
+    },
+    {
+      "label": "run:frontend",
+      "type": "shell",
+      "command": "cd frontend && npm run serve",
+      "group": "build",
+      "problemMatcher": []
+    },
+    {
+      "label": "run:teamApi",
+      "type": "shell",
+      "command": "cd teamApi && nodemon",
+      "group": "build",
+      "problemMatcher": []
+    },
+    {
+      "label": "run:playersApi",
+      "type": "shell",
+      "command": "cd playersApi && nodemon",
+      "group": "build",
+      "problemMatcher": []
+    },
+    {
+      "label": "run:server",
+      "type": "shell",
+      "command": "cd server &&  export TEAMS_PATH='localhost:4000/teams' && export PLAYERS_PATH='localhost:5050/players' && nodemon",
+      "group": "build",
+      "problemMatcher": []
+    },
   ]
 }
