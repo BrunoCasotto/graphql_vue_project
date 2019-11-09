@@ -7,6 +7,7 @@
     {
       "name": "Run backend and services",
       "configurations": [
+        "Launch frontend",
         "Launch server",
         "Launch playersApi",
         "Launch teamApi"
@@ -20,8 +21,8 @@
       "name": "Launch server",
       "program": "${workspaceFolder}/server/index.js",
       "env": {
-        "TEAMS_PATH":"localhost:4000/teams",
-        "PLAYERS_PATH": "localhost:5050/players"
+        "TEAMS_PATH":"http://localhost:4040/teams",
+        "PLAYERS_PATH": "http://localhost:5050/players"
       }
     },
     {
@@ -35,6 +36,17 @@
       "request": "launch",
       "name": "Launch teamApi",
       "program": "${workspaceFolder}/teamApi/index.js",
+    },
+    {
+      "type": "node",
+      "request": "launch",
+      "name": "Launch frontend",
+      "runtimeExecutable": "${env:NVM_BIN}/npm",
+      "cwd": "${workspaceRoot}/frontend",
+        "args": [
+            "run",
+            "serve"
+        ],
     }
   ]
 }

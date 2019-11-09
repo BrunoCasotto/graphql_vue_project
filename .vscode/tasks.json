@@ -46,7 +46,7 @@
     {
       "label": "run:server",
       "type": "shell",
-      "command": "cd server &&  export TEAMS_PATH='localhost:4000/teams' && export PLAYERS_PATH='localhost:5050/players' && nodemon",
+      "command": "cd server &&  export TEAMS_PATH='http://localhost:4040/teams' && export PLAYERS_PATH='http://localhost:5050/players' && nodemon",
       "group": "build",
       "problemMatcher": []
     },
