@@ -1,28 +1,83 @@
 <template>
-  <div id="app">
-    <img alt="Vue logo" src="./assets/logo.png">
-    <HelloWorld msg="Run Development mode"/>
+  <div id="app" class="container">
+    <div class="row">
+      <div class="col-6">
+        <div class="header">
+          <h5 class="title">Times de basquete</h5>
+        </div>
+
+        <TeamList
+          :teamList="teamList"
+          :activeTeam="selectedTeam"
+          :setActiveTeam="(team) => setActiveTeam(team)"
+        />
+      </div>
+
+      <div
+        v-if="selectedTeam"
+        class="col-6"
+      >
+        <div class="header">
+          <h5 class="title">Detalhes</h5>
+        </div>
+
+        <TeamDetails
+          :team="selectedTeam"
+        />
+      </div>
+    </div>
   </div>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
+import "bootstrap/dist/css/bootstrap.css"
+import "font-awesome/css/font-awesome.css"
+import TeamList from './components/teamList'
+import TeamDetails from './components/teamDetails'
 
 export default {
+  data() {
+    return {
+      selectedTeam: null,
+      teamList: [
+        {
+          teamId: 1610612737,
+          abbreviation: 'ATL',
+          teamName: 'Atlanta Hawks',
+          simpleName: 'Hawks',
+          location: 'Atlanta'
+        },
+        {
+          teamId: 1610612738,
+          abbreviation: 'BOS',
+          teamName: 'Boston Celtics',
+          simpleName: 'Celtics',
+          location: 'Boston'
+        },
+        {
+          teamId: 1610612751,
+          abbreviation: 'BKN',
+          teamName: 'Brooklyn Nets',
+          simpleName: 'Nets',
+          location: 'Brooklyn'
+        },
+      ]
+    }
+  },
   name: 'app',
   components: {
-    HelloWorld
+    TeamList,
+    TeamDetails
+  },
+  methods: {
+    setActiveTeam(team) {
+      this.selectedTeam = team
+    }
   }
 }
 </script>
-
 <style>
-#app {
-  font-family: 'Avenir', Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
-}
+  .header {
+    padding: 30px 0;
+  }
 </style>
