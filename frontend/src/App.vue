@@ -1,9 +1,9 @@
 <template>
   <div id="app" class="container">
     <div class="row">
-      <div class="col-6">
+      <div class="col-5">
         <div class="header">
-          <h5 class="title">Times de basquete</h5>
+          <h3 class="title">Times de basquete</h3>
         </div>
 
         <TeamList
@@ -13,12 +13,20 @@
         />
       </div>
 
+      <div class="col-1">
+        <img
+          class="center-image"
+          src="./assets/logo.png"
+          width="100px"
+        >
+      </div>
+
       <div
         v-if="selectedTeam"
         class="col-6"
       >
         <div class="header">
-          <h5 class="title">Detalhes</h5>
+          <h3 class="title">Detalhes</h3>
         </div>
 
         <TeamDetails
@@ -79,5 +87,8 @@ export default {
 <style>
   .header {
     padding: 30px 0;
+  }
+  .center-image {
+    margin-top: 100px;
   }
 </style>

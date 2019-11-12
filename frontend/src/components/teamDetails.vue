@@ -1,6 +1,6 @@
 <template>
   <div class="card">
-    <div class="card-header">
+    <div class="card-header bg-danger text-white">
       {{ team.teamName }}
     </div>
     <div class="card-body">
@@ -18,7 +18,12 @@
         Localização:
       </h5>
       <p>{{ team.location }}</p>
+
+      <button class="btn btn-primary">
+        Ver Detalhes
+      </button>
     </div>
+
   </div>
 </template>
 
