@@ -57,7 +57,8 @@ export default {
     return {
       selectedTeam: null,
       teamList: [],
-      searchTerm: ''
+      searchTerm: '',
+      apiUrl: 'http://localhost:8080/api'
     }
   },
   name: 'app',
@@ -74,7 +75,7 @@ export default {
       }
 
       const { data } = await axios({
-        url: 'http://localhost:4000',
+        url: this.apiUrl,
         method: 'post',
         data: {
           query: `
