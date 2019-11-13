@@ -19,9 +19,12 @@
       </h5>
       <p>{{ team.location }}</p>
 
-      <button class="btn btn-primary">
+      <router-link
+        class="btn btn-primary"
+        :to="{ path: 'Team', params: {team: 'casotto'} }"
+      >
         Ver Detalhes
-      </button>
+      </router-link>
     </div>
 
   </div>
