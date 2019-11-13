@@ -19,12 +19,12 @@
       </h5>
       <p>{{ team.location }}</p>
 
-      <router-link
+      <Button
         class="btn btn-primary"
-        :to="{ path: 'Team', params: {team: 'casotto'} }"
+        @click="fetchPlayers"
       >
-        Ver Detalhes
-      </router-link>
+        Ver Jogadores
+      </Button>
     </div>
 
   </div>
@@ -35,6 +35,10 @@ export default {
   props: {
     team: {
       type: Object,
+      default: () => {},
+    },
+    fetchPlayers: {
+      type: Function,
       default: () => {},
     }
   }

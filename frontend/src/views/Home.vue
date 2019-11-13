@@ -5,6 +5,14 @@
         <div class="header">
           <h3 class="title">Times de basquete</h3>
         </div>
+        <input
+          v-model="searchTerm"
+          @input="fetchTeams(searchTerm)"
+          class="form-control"
+          type="text"
+          placeholder="Search"
+          aria-label="Search"
+        >
 
         <TeamList
           :teamList="teamList"
@@ -38,6 +46,7 @@
 </template>
 
 <script>
+import axios from 'axios'
 import "bootstrap/dist/css/bootstrap.css"
 import "font-awesome/css/font-awesome.css"
 import TeamList from './../components/teamList'
@@ -47,29 +56,8 @@ export default {
   data() {
     return {
       selectedTeam: null,
-      teamList: [
-        {
-          teamId: 1610612737,
-          abbreviation: 'ATL',
-          teamName: 'Atlanta Hawks',
-          simpleName: 'Hawks',
-          location: 'Atlanta'
-        },
-        {
-          teamId: 1610612738,
-          abbreviation: 'BOS',
-          teamName: 'Boston Celtics',
-          simpleName: 'Celtics',
-          location: 'Boston'
-        },
-        {
-          teamId: 1610612751,
-          abbreviation: 'BKN',
-          teamName: 'Brooklyn Nets',
-          simpleName: 'Nets',
-          location: 'Brooklyn'
-        },
-      ]
+      teamList: [],
+      searchTerm: ''
     }
   },
   name: 'app',
@@ -78,6 +66,36 @@ export default {
     TeamDetails
   },
   methods: {
+    async fetchTeams(searchTerm) {
+      this.selectedTeam = null
+      if(searchTerm === '') {
+        this.teamList = []
+        return
+      }
+
+      const { data } = await axios({
+        url: 'http://localhost:4000',
+        method: 'post',
+        data: {
+          query: `
+            query ($searchTerm: String) {
+              teams: teams(name: $searchTerm){
+                teamId
+                abbreviation
+                teamName
+                simpleName
+                location
+              }
+            }
+          `,
+          variables: {
+						searchTerm
+					}
+        }
+      })
+
+      this.teamList = data.data.teams
+    },
     setActiveTeam(team) {
       this.selectedTeam = team
     }
