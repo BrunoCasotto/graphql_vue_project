@@ -26,7 +26,6 @@
         Ver Jogadores
       </Button>
     </div>
-
   </div>
 </template>
 
