@@ -3,28 +3,44 @@
     <div class="card-header bg-danger text-white">
       {{ team.teamName }}
     </div>
-    <div class="card-body">
-      <h5 class="card-title">
-        Abreviação:
-      </h5>
-      <p>{{ team.abbreviation }}</p>
+    <div class="row">
+      <div class="col-5">
+        <div class="card-body">
+          <h5 class="card-title">
+            Abreviação:
+          </h5>
+          <p>{{ team.abbreviation }}</p>
 
-      <h5 class="card-title">
-        Nome simples:
-      </h5>
-      <p>{{ team.simpleName }}</p>
+          <h5 class="card-title">
+            Nome simples:
+          </h5>
+          <p>{{ team.simpleName }}</p>
 
-      <h5 class="card-title">
-        Localização:
-      </h5>
-      <p>{{ team.location }}</p>
+          <h5 class="card-title">
+            Localização:
+          </h5>
+          <p>{{ team.location }}</p>
+        </div>
+      </div>
 
-      <Button
-        class="btn btn-primary"
-        @click="fetchPlayers"
-      >
-        Ver Jogadores
-      </Button>
+      <div class="col-7">
+        <div class="card-body">
+          <h5 class="card-title">
+              Jogadores:
+          </h5>
+          <div class="overflow-auto list-container">
+            <ul class="list-group list-group-flush">
+              <li
+                v-for="player in team.players"
+                :key="player.playerId"
+                class="list-group-item"
+              >
+                {{ player.firstName }} {{ player.lastName }}
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
     </div>
   </div>
 </template>
@@ -44,6 +60,8 @@ export default {
 }
 </script>
 
-<style>
-
+<style scoped>
+  .list-container {
+    max-height: 200px;
+  }
 </style>

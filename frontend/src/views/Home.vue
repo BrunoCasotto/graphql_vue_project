@@ -85,6 +85,11 @@ export default {
                 teamName
                 simpleName
                 location
+                players {
+                  firstName
+                  lastName
+                  playerId
+                }
               }
             }
           `,
