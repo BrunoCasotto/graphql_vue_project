@@ -58,7 +58,8 @@ export default {
       selectedTeam: null,
       teamList: [],
       searchTerm: '',
-      apiUrl: 'http://localhost:8080/api'
+      apiUrl: process.env.NODE_ENV === 'development' ?
+        'http://localhost:4000' : 'http://localhost:8080/api'
     }
   },
   name: 'app',
